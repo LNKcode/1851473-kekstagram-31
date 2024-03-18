@@ -13,19 +13,21 @@ function openPopup(itemObject) {
   document.querySelector('.social__comment-count').classList.add('hidden');
   document.querySelector('.comments-loader').classList.add('hidden');
   document.querySelector('body').classList.add('modal-open');
+  document.addEventListener('keydown', handlerEscKeydown);
 }
 
 function closePopup () {
   document.querySelector('.big-picture').classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
+  document.removeEventListener('keydown', handlerEscKeydown);
 }
 
-document.addEventListener('keydown', (evt) => {
+function handlerEscKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closePopup();
   }
-});
+}
 
 function createListComment (arr) {
   const list = document.querySelector('.social__comments');
